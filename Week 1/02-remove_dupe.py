@@ -17,12 +17,9 @@ def remove_dupe(user_input):
     for alphabet in dupe:
         if alphabet in non_dupe:
             dupe.remove(alphabet)
+
+    #remove 
             
-
-
-            
-
-    
 
 
     #join the list into a string

@@ -11,24 +11,42 @@ def caesar(message, shift):
         print("no")
         pass
     else:
-        #split into list
-        message = list(message)
+
         #ASCII decimal value list
         ASCII_list = []
         ASCII_shifted_list = []
         ASCII_Char_list = []
 
+        #>>> def char_shift(char, shift):
+        #start = 65 if char.isupper() else 97
+        #char = ord(char) - start
+        #shift = (char + shift) % 26
+        #return chr(shift+start)
+
+        #start of 65 if UPPER_case refer to ascii chart
+        if message.isupper():
+            start = 65 #dec
+        else:
+            #not upper
+            start = 97 #dec
+
         #loop through message list 
         for i in message:
             #convert all i to ASCII and append
-            ascii = ord(i)
+            ascii = ord(i) - start
             ASCII_list.append(ascii)
         #print(ASCII_list)
 
         #loop through ASCII_list and add shift value to each i value of list
         for i in ASCII_list:
-            shifted_ascii = i + shift
+            #mod the shift to prevent overflow of special symbol
+            #shift = (shift) % 26
+
+            shifted_ascii = (i + shift) % 26 
+            shifted_ascii = shifted_ascii + start
             ASCII_shifted_list.append(shifted_ascii)
+
+        #print(shift)
         #print(ASCII_shifted_list)
 
         #loop through shifted_list to convert it back to ASCII character
@@ -46,28 +64,38 @@ def caesar(message, shift):
 caesar("abc", 1)
 
 
-
 #round 3
 def decrypt_caesar(message, shift):
 
-        #split into list
-        message = list(message)
         #ASCII decimal value list
         ASCII_list = []
         ASCII_shifted_list = []
         ASCII_Char_list = []
+        
+         #start of 65 if UPPER_case refer to ascii chart
+        if message.isupper():
+            start = 65 #dec
+        else:
+            #not upper
+            start = 97 #dec
+
 
         #loop through message list 
         for i in message:
-            #convert all i to ASCII and append
-            ascii = ord(i)
+            #convert all i to ASCII and append and minus start 
+            ascii = ord(i) - start
             ASCII_list.append(ascii)
         #print(ASCII_list)
 
         #loop through ASCII_list and add shift value to each i value of list
         for i in ASCII_list:
-            shifted_ascii = i - shift
+            #mod the shift to prevent overflow of special symbol
+            shifted_ascii = (i - shift) % 26 
+            shifted_ascii = shifted_ascii + start
             ASCII_shifted_list.append(shifted_ascii)
+
+        #print(shifted_ascii)
+        #print(shift)
         #print(ASCII_shifted_list)
 
         #loop through shifted_list to convert it back to ASCII character
@@ -79,12 +107,11 @@ def decrypt_caesar(message, shift):
 
         #join list 
         unciphered_text = (''.join(ASCII_Char_list))
-        print("The caeser ciphered text is"  , unciphered_text)
+        print("The caeser unciphered text is"  , unciphered_text)
 
 
 decrypt_caesar("bcd", 1)
 
 
-#assert test
 
 
