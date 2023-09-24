@@ -1,5 +1,7 @@
 import re
 #round 1
+
+
 def caesar(message, shift):
 
     #ensure message is clean from digit and special character
@@ -7,7 +9,7 @@ def caesar(message, shift):
     special_checker = (bool(re.search(r'[@_!#$%^&*()<>?/\|}{~:]' , message)))
 
 
-    if ' ' in message or number_checker or special_checker:
+    if number_checker or special_checker:
         print("no")
         pass
     else:
@@ -111,6 +113,10 @@ def decrypt_caesar(message, shift):
 
 
 decrypt_caesar("bcd", 1)
+
+
+#assert
+
 
 
 
