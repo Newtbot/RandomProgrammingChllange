@@ -1,8 +1,7 @@
 class CreditCard:
-    def __init__(self,card_number , card_type , valid):
+    def __init__(self,card_number):
         self.card_number = card_number
-        self.card_type = card_type # "AMEX"
-        self.valid = valid #accepts true or false 
+
     
 #Create and add your method called `determine_card_type` to the CreditCard class here:
     def determine_card_type(self):
@@ -10,14 +9,29 @@ class CreditCard:
         #Mastercard must start with 51, 52, 53, 54 or 55    
         #AMEX must start with 34 or 37
         #Discover must start with 6011
-        print(self.card_type)
-        print(self.card_number)
+        master_card = ["51","52","53","54","55"]
+        amex_card = ["34" , "37"]
+        if self.card_number.startswith("4"):
+            return "Visa Card"
+        elif self.card_number.startswith(tuple(master_card)):
+            return "Master Card"
+        elif self.card_number.startswith(tuple(amex_card)):
+            return "Amex Card"
+        elif self.card_number.startswith("6011"):
+            return "Discover Card"
+        else:
+            return "Invalid card Number"
+
 
 
 #Create and add your method called `check_length` to the CreditCard class here:
     def check_length(self):
-        pass
-
+        #Visa, MC and Discover have 16 digits
+        #AMEX has 15
+        if len(self.card_number) <= 16:
+            return "Visa or Mastercard or Discover card"
+        else:
+            return "AMEX card"
 #Create and add your method called 'validate' to the CreditCard class here:
     def validate(self):
         reverse_number = []
@@ -62,8 +76,8 @@ class CreditCard:
             self.valid = False
             return self.valid
 
-cc = CreditCard(card_number="4847352989263095" , card_type="VISA" , valid="TRUE")
+cc = CreditCard(card_number="4847352989263095") # 5554771809104560
 print(cc.validate())
-cc.determine_card_type()
 print(cc.determine_card_type())
+print(cc.check_length())
 
